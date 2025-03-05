@@ -12,31 +12,31 @@ import {AppCoolButtonsComponent} from "../container/cool-buttons.component";
 
     <button (click)="increment()">ComponentTwo</button>
     <p>Component two</p>
-    {{ count() }}
-<app-cool-buttons [count]="count()"></app-cool-buttons>
-<!--    {{ count }}-->
-<!--<app-cool-buttons [count]="count"></app-cool-buttons>-->
+<!--    {{ count() }}-->
+<!--<app-cool-buttons [count]="count()"></app-cool-buttons>-->
+    {{ count }}
+<app-cool-buttons [count]="count"></app-cool-buttons>
   `,
   standalone: true,
   changeDetection,
 })
 export class ComponentTwo {
-  // public count = 0;
-  public count = signal(0);
+  public count = 0;
+  // public count = signal(0);
 
   constructor(
     private _cdr: ChangeDetectorRef
   ) {
     setTimeout(() => {
-      // this.count++;
-      this.count.update(val => ++val);
+      this.count++;
+      // this.count.update(val => ++val);
       // this._cdr.markForCheck();
     }, 1000)
   }
 
   increment() {
-    // this.count++;
-    this.count.update(val => ++val);
+    this.count++;
+    // this.count.update(val => ++val);
 
     // this._cdr.detectChanges();
   }
