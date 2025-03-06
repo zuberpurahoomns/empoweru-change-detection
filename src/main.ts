@@ -2,7 +2,7 @@ import {enableProdMode, provideExperimentalZonelessChangeDetection} from '@angul
 import {environment} from './environments/environment';
 import {bootstrapApplication} from "@angular/platform-browser";
 import {AppComponent} from "./app/app.component";
-import {provideRouter, provideRoutes, Routes} from "@angular/router";
+import {provideRouter, Routes} from "@angular/router";
 
 if (environment.production) {
   enableProdMode();
