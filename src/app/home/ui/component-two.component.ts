@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, signal} from '@angular/core';
+import {ChangeDetectorRef, Component, computed, Signal, signal} from '@angular/core';
 import {changeDetection} from "../../constant";
 import {AppCoolButtonsComponent} from "../container/cool-buttons.component";
 
@@ -23,6 +23,10 @@ import {AppCoolButtonsComponent} from "../container/cool-buttons.component";
 export class ComponentTwo {
   // public count = 0;
   public count = signal(0);
+
+  // If this is read in my template, it will trigger change detection
+  // Else if it is used in TS code, CD will not be triggered
+  public doubleCount: Signal<number> = computed(() => this.count() * 2);
 
   constructor(
     private _cdr: ChangeDetectorRef
