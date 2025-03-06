@@ -24,7 +24,6 @@ export class HomeComponent {
   }
 
   public detectChanges() {
-    // this.cdr.detectChanges();
   }
 
   logChangeDetection() {

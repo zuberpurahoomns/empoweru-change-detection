@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ApplicationRef, ChangeDetectorRef, Component, inject} from '@angular/core';
 import {changeDetection} from "./constant";
 import {RouterOutlet} from "@angular/router";
 

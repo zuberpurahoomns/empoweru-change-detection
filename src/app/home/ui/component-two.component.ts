@@ -46,7 +46,6 @@ export class ComponentTwo {
   }
 
   logChangeDetection() {
-    console.log('ComponentTwo rendered');
     return true;
   }
 }
