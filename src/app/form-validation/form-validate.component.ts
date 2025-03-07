@@ -109,10 +109,7 @@ export class FormValidateComponent {
 
     const user = this.reactiveForm.value;
 
-    console.info('Name:', user.name);
-    console.info('Nickname:', user.nickname);
-    console.info('Email:', user.email);
-    console.info('Password:', user.password);
+    console.log(user)
   }
 
 }
