@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {emailValidator} from "./email-validator.directive";
 import {NgClass, NgIf} from "@angular/common";
 
@@ -9,6 +9,13 @@ interface IUser {
   email: string;
   password: string;
   showPassword: boolean;
+}
+
+type UserForm = {
+  name: FormControl;
+  nickname: FormControl;
+  email: FormControl;
+  password: FormControl;
 }
 
 @Component({
@@ -24,15 +31,12 @@ interface IUser {
 })
 export class FormValidateComponent {
 
-  reactiveForm!: FormGroup<{
-    name: FormControl;
-    nickname: FormControl;
-    email: FormControl;
-    password: FormControl;
-  }>;
+  reactiveForm!: FormGroup<UserForm>;
   user: IUser;
 
-  constructor() {
+  constructor(
+    private _formBuilder: FormBuilder,
+  ) {
     this.user = {} as IUser;
   }
 
@@ -56,6 +60,29 @@ export class FormValidateComponent {
         Validators.required,
         Validators.minLength(15),
       ]),
+    });
+  }
+
+  constructFormUsingFormBuilder(): void {
+    this.reactiveForm = this._formBuilder.group({
+      name: [this.user.name, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(250),
+      ]],
+      nickname: [this.user.nickname, [
+        Validators.maxLength(10),
+      ]],
+      email: [this.user.email, [
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(250),
+        emailValidator(),
+      ]],
+      password: [this.user.password, [
+        Validators.required,
+        Validators.minLength(15),
+      ]],
     });
   }
 
